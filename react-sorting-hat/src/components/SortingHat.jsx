@@ -38,20 +38,45 @@ export default class SortingHat extends React.Component {
                     }
                 ]
             },
+            {
+                question: 'You and two friends need to cross a bridge guarded by a river troll who insists on fighting one of you before he will let all of you pass. Do you:',
+                answers: [
+                    {
+                        answer:'Attempt to confuse the troll into letting all three of you pass without fighting?',
+                        result: 'rr'
+                    },
+                    {
+                        answer:'Suggest drawing lots to decide which of you will fight?',
+                        result: 'hh'
+                    },
+                    {
+                        answer:'Suggest that all three of you should fight (without telling the troll)?',
+                        result:'ss'
+                    },
+                    {
+                        answer:"Volunteer to fight?",
+                        result:'gg'
+                    }
+                ]
+            },
         ];
 
         this.state = {
             currentQuestion: this.questions[0].question,
-            currentAnswers: this.questions[0].answers
+            currentAnswers: this.questions[0].answers,
+            result: '',
+            questionNumber:1
         };
         
     }
     
-    clicked = () => {
-        this.setState({
-            currentQuestion: this.questions[1].question,
-            currentAnswers: this.questions[1].answers
-        })
+    clicked = (answerRes) => {
+        this.setState( state => ({
+            result: state.result + answerRes,
+            questionNumber: state.questionNumber+1,
+            currentQuestion: this.questions[state.questionNumber].question,
+            currentAnswers: this.questions[state.questionNumber].answers,
+        }))
     }
 
     render() {
@@ -60,7 +85,7 @@ export default class SortingHat extends React.Component {
                 <h2 className="sorting-header">Take This Quiz</h2>
                 <Question question={this.state.currentQuestion} />
                 {
-                    this.state.currentAnswers.map((answer, index) =><button onClick={this.clicked} key={index}>{answer.answer}</button>)
+                    this.state.currentAnswers.map((answer, index) =><button onClick={() =>this.clicked(answer.result)} key={index}>{answer.answer}</button>)
                 }
             </div>
         )
