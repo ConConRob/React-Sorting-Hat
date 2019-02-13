@@ -1,5 +1,6 @@
 import React from 'react';
 import Question from './Question';
+import './SortingHat.css';
 export default class SortingHat extends React.Component {
     constructor(props) {
         super(props);
@@ -65,20 +66,22 @@ export default class SortingHat extends React.Component {
             currentQuestion: this.questions[0].question,
             currentAnswers: this.questions[0].answers,
             result: '',
-            questionNumber:1
+            questionNumber:1,
+            displayQuestion: '',
+            currentTitle: 'Take This Quiz'
         };
         
     }
     
     clicked = (answerRes) => {
-        // if last quest 
+        // if last question
         if(this.questions.length === this.state.questionNumber) {
             // calc the house
             const winningHouse = this.winningHouse();
             // clear the questions
+            this.hideQuestion();
             // display results 
-            console.log(this.state.result);
-            console.log(winningHouse);
+            this.showResult(winningHouse);
         } else {
             this.updateQuestion(answerRes);
         }
@@ -112,20 +115,35 @@ export default class SortingHat extends React.Component {
             return 'Gryffindor';
         }
     }
+
     // counts the number of matching strings in a string and returns how many matches
     howManyMatch(stringToSearch, string) {
         const regex = new RegExp(string,"g");
         return (stringToSearch.match(regex) || []).length;
     }
 
+    // hide the question 
+    hideQuestion(){
+        this.setState({displayQuestion:'sorting-question-hidden'})
+    }
+    
+    // show the results of the test 
+    showResult(result){
+        console.log(result);
+        this.setState({ currentTitle: result });
+    }
+
     render() {
         return (
             <div className="sorting-container">
-                <h2 className="sorting-header">Take This Quiz</h2>
-                <Question question={this.state.currentQuestion} />
-                {
-                    this.state.currentAnswers.map((answer, index) =><button onClick={() =>this.clicked(answer.result)} key={index}>{answer.answer}</button>)
-                }
+                <h2 className="sorting-header">{this.state.currentTitle}</h2>
+                <div className={`question-container ${this.state.displayQuestion}`}>
+                    <Question question={this.state.currentQuestion} />
+                    {
+                        this.state.currentAnswers.map((answer, index) =><button onClick={() =>this.clicked(answer.result)} key={index}>{answer.answer}</button>)
+                    }                
+                </div>
+
             </div>
         )
         
