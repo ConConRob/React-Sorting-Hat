@@ -71,12 +71,39 @@ export default class SortingHat extends React.Component {
     }
     
     clicked = (answerRes) => {
+        // if last quest 
+        if(this.questions.length === this.state.questionNumber) {
+            // calc the house
+            this.winningHouse();
+            // clear the questions
+            // display results 
+        } else {
+            this.updateQuestion(answerRes);
+        }
+        
+        
+    }
+
+    // takes in the answer and updates to new question and answers
+    updateQuestion = (answerRes) => {
         this.setState( state => ({
             result: state.result + answerRes,
             questionNumber: state.questionNumber+1,
             currentQuestion: this.questions[state.questionNumber].question,
             currentAnswers: this.questions[state.questionNumber].answers,
         }))
+    }
+
+    // counts the total score for each house and returns a string of the winning house
+
+    winningHouse = () => {
+        const numR = this.howManyMatch(this.state.result, "r");
+        console.log(numR);
+    }
+
+    howManyMatch(stringToSearch, string) {
+        const regex = new RegExp(string,"g");
+        return (stringToSearch.match(regex) || []).length;
     }
 
     render() {
