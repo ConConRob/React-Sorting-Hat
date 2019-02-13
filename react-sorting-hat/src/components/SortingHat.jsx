@@ -74,9 +74,11 @@ export default class SortingHat extends React.Component {
         // if last quest 
         if(this.questions.length === this.state.questionNumber) {
             // calc the house
-            this.winningHouse();
+            const winningHouse = this.winningHouse();
             // clear the questions
             // display results 
+            console.log(this.state.result);
+            console.log(winningHouse);
         } else {
             this.updateQuestion(answerRes);
         }
@@ -95,12 +97,22 @@ export default class SortingHat extends React.Component {
     }
 
     // counts the total score for each house and returns a string of the winning house
-
     winningHouse = () => {
         const numR = this.howManyMatch(this.state.result, "r");
-        console.log(numR);
+        const numH = this.howManyMatch(this.state.result, "h");
+        const numS = this.howManyMatch(this.state.result, "s");
+        const numG = this.howManyMatch(this.state.result, "g");
+        if((numR >= numH)&&(numR>=numS)&&(numR>=numG)) {
+            return 'Ravenclaw';
+        }else if((numH >= numR)&&(numH>=numS)&&(numH>=numG)){
+            return 'Hufflepuff';
+        }else if((numS >= numR)&&(numS>=numH)&&(numS>=numG)){
+            return 'Slytherin';
+        }else {
+            return 'Gryffindor';
+        }
     }
-
+    // counts the number of matching strings in a string and returns how many matches
     howManyMatch(stringToSearch, string) {
         const regex = new RegExp(string,"g");
         return (stringToSearch.match(regex) || []).length;
