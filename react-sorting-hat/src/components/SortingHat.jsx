@@ -5,7 +5,7 @@ import './SortingHat.css';
 export default class SortingHat extends React.Component {
     constructor(props) {
         super(props);
-        this.questions =  questions()
+        this.questions =  questions();
 
         this.state = {
             currentQuestion: this.questions[0].question,
@@ -87,7 +87,7 @@ export default class SortingHat extends React.Component {
                         this.state.currentAnswers.map((answer, index) =><button onClick={() =>this.clicked(answer.result)} key={index}>{answer.answer}</button>)
                     }                
                 </div>
-
+                {this.state.displayQuestion!=''&&<div>hiiiii</div>}
             </div>
         )
         
