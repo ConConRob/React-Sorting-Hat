@@ -2,19 +2,7 @@
 export default function questions() {
     return (
         [
-            {
-                question: 'Dawn or Dusk?',
-                answers: [
-                    {
-                        answer: 'Dawn',
-                        result: 'gr',
-                    },
-                    {
-                        answer: 'Dusk',
-                        result: 'hs',
-                    }
-                ]  
-            },
+           
             {
                 question: 'Four boxes are placed before you. Which would you try and open?',
                 answers: [
@@ -35,6 +23,19 @@ export default function questions() {
                         result:'gg'
                     }
                 ]
+            },
+            {
+                question: 'Dawn or Dusk?',
+                answers: [
+                    {
+                        answer: 'Dawn',
+                        result: 'gr',
+                    },
+                    {
+                        answer: 'Dusk',
+                        result: 'hs',
+                    }
+                ]  
             },
             {
                 question: 'You and two friends need to cross a bridge guarded by a river troll who insists on fighting one of you before he will let all of you pass. Do you:',

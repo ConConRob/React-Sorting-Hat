@@ -1,7 +1,50 @@
 
 
+.sorting-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    justify-content: space-around;
+}
+.sorting-container.Hufflepuff{
+    color:#F3DE0B;
+    background: #0A0A0A;
+}
+.sorting-container.Ravenclaw{
+    color:#04121C;
+    background:#725438;
+}
+.sorting-container.Slytherin{
+    color:#234723;
+    background: #9E9997;
+}
+.sorting-container.Gryffindor{
+    color:#4D0505;
+    background:#B79114;
+}
+.sorting-header{
+    font-size: 4rem;
+    margin-top: 0;
+}
 
-
+.sorting-question-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    height: 50%;
+    justify-content: center;
+}
+.sorting-question{
+    font-size: 1.7rem;
+    margin:0;
+    padding: 0 30px;
+}
+.sorting-answer {
+    width: 100vw;
+    font-size: 1.5rem;
+    padding: 0 30px;
+}
 
 
 

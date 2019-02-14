@@ -74,20 +74,24 @@ export default class SortingHat extends React.Component {
     
     // show the results of the test 
     showResult(result){
-        this.setState({ currentTitle: result });
+        this.setState({ currentTitle: result, result});
     }
 
     render() {
         return (
-            <div className="sorting-container">
+            <div className={`sorting-container ${this.state.result}`} >
                 <h2 className="sorting-header">{this.state.currentTitle}</h2>
-                <div className={`question-container ${this.state.displayQuestion}`}>
+                <div className={`sorting-question-container ${this.state.displayQuestion}`}>
                     <Question question={this.state.currentQuestion} />
                     {
-                        this.state.currentAnswers.map((answer, index) =><button onClick={() =>this.clicked(answer.result)} key={index}>{answer.answer}</button>)
+                        this.state.currentAnswers.map((answer, index) =><button className="sorting-answer" onClick={() =>this.clicked(answer.result)} key={index}>{answer.answer}</button>)
                     }                
                 </div>
-                {this.state.displayQuestion!=''&&<div>hiiiii</div>}
+                {
+                    this.state.displayQuestion!=''&&
+                    // display of winning house
+                    <div>ADD INFO ABOUT HOUSE AND CREST</div>
+                }
             </div>
         )
         
